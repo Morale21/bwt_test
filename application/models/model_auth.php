@@ -10,14 +10,17 @@
 		$query=mysql_query('SELECT Email, Password FROM users', $db);
 		$count = mysql_num_rows($query);
 		
-		for($i=0;$i<=$count;$i++){
+		$flag=false;
+		
+		for($i=0;$i<$count;$i++){
 			$data = mysql_fetch_assoc($query);
             if($data['Email'] == $email)
-				if($data['Password'] == $pass){
-					echo $data['Email'], $data['Password'];
-					$auth = true;
-				}
+				if($data['Password'] == $pass)
+					$flag=true;
 		}
+		if ($flag) echo "<script>alert(\"Вы вошли как $email\")</script>"; 
+		else echo "<script>alert(\"Неправильное имя или пароль\");</script>";
+		
 		mysql_close($db);
 	}
 	
@@ -39,7 +42,7 @@
 		if (empty($pass)) 
 			$err[] = "Не введен пароль";
 		
-		for($i=0;$i<=$count;$i++){
+		for($i=0;$i<$count;$i++){
 			$data = mysql_fetch_assoc($query);
             if($data['Email'] == $email)
 				$err[] = "Пользователь с таким email адресом уже существует в базе данных";

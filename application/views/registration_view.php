@@ -15,8 +15,9 @@
 			<option value="m"> мужской </option>
 			<option value="f"> женский </option>
 		</select>
-		<button name="login"type= "submit"> Создать </button>
+		<button name="login"type= "submit" id="login"> Создать </button>
    </form>
    </div>
 </body>
 </html>
+

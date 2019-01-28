@@ -45,6 +45,7 @@
 				</div>
 			</form>
 			</div>
+		</nav>
 				<?php
 					if ($_SERVER['REQUEST_URI']=="/feedbacks")
 						Model_Feedbacks::showFeedback($userId);
@@ -63,12 +64,11 @@
 				</div>
 				</form>
 				</div>
+			</nav>
 				<?php
 					if ($_SERVER['REQUEST_URI']=="/feedbacks")
 						echo "Авторизируйтесь для просмотра отзывов";
 					if ($_SERVER['REQUEST_URI']=="/main")
 						echo "Авторизируйтесь для просмотра погоды";
 					}
-				?>
-						
-		</nav>
+				?>	

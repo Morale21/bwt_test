@@ -1,26 +1,6 @@
 <?php
-	session_start();
 	$_SESSION['count'] = time();
 	$image;
-	$flag = 5;
-	
-	if (isset($_POST["flag"])) {
-		$input = $_POST["input"];
-		$flag = $_POST["flag"];
-	}
-	if ($flag == 1) {
-		if ($input == $_SESSION['captcha_string'])
-			captchaResult(true);
-		else {
-			captchaResult(false);
-			create_image();
-			display();
-		}
-	} 
-	else {
-		create_image();
-		display();
-	}
 	
 	function display()
 	{
@@ -31,13 +11,10 @@
         <div style="display:block;margin-bottom:20px;margin-top:20px;">
             <img src="image<?php echo $_SESSION['count'] ?>.png">
         </div>
-        <form action=" <?php echo $_SERVER['PHP_SELF']; ?>" method="POST"
-        / >
 		Введите капчу:
         <input type="text" name="input"/>
         <input type="hidden" name="flag" value="1"/>
-		<button name="submit" type="submit">Проверить капчу</button>
-        </form>
+   
     </div>
 
 	<?php

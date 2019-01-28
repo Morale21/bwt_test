@@ -7,16 +7,28 @@
 	<body>
 		<div class="login-page">
 		<div class="form">
-			<form action="" id="loginform" method="post"name="loginform">
+			<form id="loginform" action="" method="post"name="loginform">
 				<input type="text" name="contactName" placeholder="Имя"/>
 				<input type="email" name="contactEmail" placeholder="Email адресс"/>
 				<textarea name="comment" placeholder="Ваш отзыв"></textarea>
-				<button name="send" type="submit">Отправить</button>
-			</form>
-			<form action="" id="loginform" method="post"name="loginform">
-			<?php
+
+				<?php
 					include "application/inc/captcha.php";
-			?>
+					
+					if (isset($_REQUEST['send'])){
+						Model_Contact::captchaCheck();
+						create_image();
+						display();
+					}
+					else{
+						create_image();
+						display();
+					}
+				?>
+				<button name="send" type="submit" >Отправить</button>
+				<?php
+					
+				?>
 			</form>
 		</div>
 		</div>

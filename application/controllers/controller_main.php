@@ -1,14 +1,14 @@
-<?php	
-	require_once 'application/views/main_view.php';
-	
-	function router(){	
-		require_once 'application/models/model_page.php';
+<?php
+class Controller_Main extends Controller
+{
+	function __construct() {
+		$this->model = new Model_Main();
+		$this->view = new View();
 	}
-	
-	if (isset($_REQUEST['enter'])){
-		require_once 'application/models/model_auth.php';
-		$email = $_REQUEST["authEmail"];
-		$pass = $_REQUEST["authPass"];
-		signIn($email,$pass);
-	}
+	function action_index()
+	{	
+		$this->view->generate('main_view.php','template_view.php');
+	}		
+		
+}
 ?>

@@ -1,8 +1,15 @@
 <?php
-	require_once 'application/views/feedbacks_view.php';
-	
-	function showFeedbacks(){
-		include 'application/models/model_feedbacks.php';
-		showFeedback();
+class Controller_Feedbacks extends Controller
+{
+	function __construct()
+	{
+		$this->model = new Model_Feedbacks();
+		$this->view = new View();
 	}
+	
+	function action_index()
+	{
+		$this->view->generate('feedbacks_view.php', 'template_view.php');
+	}
+}
 ?>

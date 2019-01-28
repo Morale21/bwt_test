@@ -1,31 +1,8 @@
 <?php
-	
-	include 'setting.php';
-	
-	function signIn($email, $pass){
-		
-		$db = mysql_connect(HOST, USER, PASS, DB);
-		mysql_select_db("bwt_test" ,$db);
-		
-		$query=mysql_query('SELECT Email, Password FROM users', $db);
-		$count = mysql_num_rows($query);
-		
-		$flag=false;
-		
-		for($i=0;$i<$count;$i++){
-			$data = mysql_fetch_assoc($query);
-            if($data['Email'] == $email)
-				if($data['Password'] == $pass)
-					$flag=true;
-		}
-		if ($flag) echo "<script>alert(\"Вы вошли как $email\")</script>"; 
-		else echo "<script>alert(\"Неправильное имя или пароль\");</script>";
-		
-		mysql_close($db);
-	}
-	
+class Model_Registration extends Model
+{
 	function signUp($name, $surname, $email, $pass, $sex, $date){
-		
+		include 'setting.php';
 		$db = mysql_connect(HOST, USER, PASS, DB);
 		mysql_select_db("bwt_test" ,$db);
 		
@@ -58,6 +35,7 @@
 				$errorBD .= "Error: " . $sql . "<br>" . mysql_error($db);
 				echo "<script>alert(\"$errorBD\");</script>";
 			}
+			$_SESSION['userid'] = $count;
 		}
 		else
 		{
@@ -71,4 +49,7 @@
 
 		mysql_close($db);
 	}
+}
+	
+	
 ?>

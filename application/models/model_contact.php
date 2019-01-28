@@ -1,8 +1,11 @@
 <?php
-	include 'setting.php';
-	
-	function sendFeedback($name, $email, $message){
-
+class Model_Contact extends Model
+{	
+	function sendFeedback(){
+		include 'setting.php';
+		$name = $_REQUEST['contactName'];
+		$email = $_REQUEST['contactEmail'];
+		$message = $_REQUEST['comment'];
 		$db = mysql_connect(HOST, USER, PASS, DB);
 		mysql_select_db("bwt_test" ,$db);
 		
@@ -38,5 +41,20 @@
 		
 		mysql_close($db);
 	}
+	
+	function captchaCheck(){
+		$captcha = $_SESSION['captcha_string'];
+		$input = $_POST['input'];
+		
+		if (strcasecmp($captcha, $input) == 0){
+			Model_Contact::sendFeedback();
+			return true;
+		}
+		else{
+			echo "Каптча введена неверно";
+			return false;
+		}
+	}
+}
 	
 ?>

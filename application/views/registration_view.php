@@ -16,6 +16,11 @@
 			<option value="f"> женский </option>
 		</select>
 		<button name="login"type= "submit" id="login"> Создать </button>
+		<?php
+			if (isset($_REQUEST['login'])) {
+				Controller_Registration::check_in();
+			}
+		?>
    </form>
    </div>
 </body>
